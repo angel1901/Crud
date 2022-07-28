@@ -65,8 +65,8 @@
                     </select>
                     {{ $errors->first('category_id') }}
                 </div>
-            <div class="col-lg-6 my-4 text-center">
-            <button type="submit" class="col-8 mx-auto btn btn-success">Crear</button>
+            <div class="col-lg-6 my-4 text-center mx-auto">
+                <button type="submit" class="col-8 mx-auto btn btn-success">Crear</button>
             </div>
         </form>
     @endforeach

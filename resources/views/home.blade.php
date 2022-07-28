@@ -33,10 +33,10 @@
                         <td class="col px-0 text-center d-none d-lg-block">{{ $u->country }}</td>
                         <td class="col px-0 text-center d-none d-lg-block">{{ $u->phone }}</td>
                         <td class="col px-0 text-center d-block d-lg-block">{{ $u->category }}</td>
-                        <td class="col px-0 text-center d-block d-lg-block px-0 text-center">
-                            <div class="row align-items-center justify-content-center">
+                        <td class="col px-0 text-center d-block d-lg-block px-2 text-center">
+                            <div class="row align-items-center justify-content-around">
                                 <a href="/edit/{{$u->id}}" class="col-10 col-lg-4 btn p-1 mb-2 mb-lg-0 btn-primary">Editar</a>
-                                <form method="POST" action="/borrar/{{$u->id}}" class="col-10 col-lg-4 p-0">
+                                <form method="POST" action="/borrar/{{$u->id}}" class="col-10 col-lg-5 p-0">
                                     @csrf
                                     <button class="btn p-1 btn-danger w-100">Eliminar</button>
                                 </form>
