@@ -19,21 +19,24 @@ class UsersController extends Controller
         ->select('users_crud.*', 'categories.category')
         ->get();
 
+        return view('home', [
+            'users'=> $users
+        ]);
+    }
 
+    public function crear(){
         $client = new Client();
         $url = "https://api.first.org/data/v1/countries?region=South America";
         $response = $client->request('GET', $url, [
             'verify'  => false,
         ]);
-        $responseBody = json_decode($response->getBody(), true);
-        $data = $responseBody['data'];
-        for ($i=1; $i < sizeof($data); $i++) {
+        $responseBody = json_decode($response->getBody());
+        $data = $responseBody->data;
+        $paises = [];
+        foreach ($data as $cod => $country) {
+            $paises[] = ["text" => $country->country, "value"=> $cod];
         }
-        return view('home')->with('users', $users)->with('data', $data);
-    }
-
-    public function crear(){
-        return view('create');
+        return view('create')->with('paises', $paises);
     }
 
     public function edit($id){
@@ -41,7 +44,19 @@ class UsersController extends Controller
         ->join('categories', 'users_crud.category_id', '=', 'categories.id')
         ->select('users_crud.*', 'categories.category')
         ->where('users_crud.id', $id)->get();
-        return view('edit')->with('users', $users);
+
+        $client = new Client();
+        $url = "https://api.first.org/data/v1/countries?region=South America";
+        $response = $client->request('GET', $url, [
+            'verify'  => false,
+        ]);
+        $responseBody = json_decode($response->getBody());
+        $data = $responseBody->data;
+        $paises = [];
+        foreach ($data as $cod => $country) {
+            $paises[] = ["text" => $country->country, "value"=> $cod];
+        }
+        return view('edit')->with('users', $users)->with('paises', $paises);
     }
 
     public function bye($id){

@@ -28,20 +28,10 @@
                     <label for="country" class="form-label m-0">Pais</label>
                     <select class="form-select" id="country" name="country" value="{{ old('country') }}">
                         <option  value="" selected>Escoja un Valor</option>
-                        <option value="Argentina">Argentina</option>
-                        <option value="Bolivia (Plurinational State of)">Bolivia (Plurinational State of)</option>
-                        <option value="Brazil">Brazil</option>
-                        <option value="Chile">Chile</option>
-                        <option value="Colombia">Colombia</option>
-                        <option value="Ecuador">Ecuador</option>
-                        <option value="Falkland Islands (the) [Malvinas]">Falkland Islands (the) [Malvinas]</option>
-                        <option value="French Guiana">French Guiana</option>
-                        <option value="Guyana">Guyana</option>
-                        <option value="Paraguay">Paraguay</option>
-                        <option value="Peru">Peru</option>
-                        <option value="Suriname">Suriname</option>
-                        <option value="Uruguay">Uruguay</option>
-                        <option value="Venezuela (Bolivarian Republic of)">Venezuela (Bolivarian Republic of)</option>
+                        @for($i=0; $i < count($paises); $i++ )
+                            <option value="{{$paises[$i]['value']}}">{{$paises[$i]['text']}}</option>
+                        @endfor
+
                     </select>
                     {{ $errors->first('country') }}
                 </div>
